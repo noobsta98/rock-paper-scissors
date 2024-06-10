@@ -4,7 +4,6 @@ const ROUNDS = 5;
 let computerScore = 0;
 let humanScore = 0;
 
-
 // PLAY game 
 function playGame(){
   for(let i = 0; i < ROUNDS; i++){
@@ -42,42 +41,27 @@ function getHumanChoice(){
 
 // CREATE function to playRound
 function playRound(){
-  let pPick = getHumanChoice();
-  let cPick = getComputerChoice();
-  if (pPick === 'rock' || pPick === 'paper' || pPick ==='scissors') {
-    console.log(`Player: ${pPick}`);
-    console.log(`Computer: ${cPick}`);
-    if(pPick === "rock"){
-      if(cPick === "paper"){
-        computerScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Rock loses to paper!`);
-      } else if(cPick === "scissors"){
-        humanScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Rock wins against scissors!`);
-      } else{
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
-      }
-    } else if(pPick === "scissors"){
-      if(cPick === "rock"){
-        computerScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Scissors loses against rock!`);
-      } else if(cPick === "paper"){
-        humanScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Scissors wins against paper!`);
-      } else{
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
-      }
-    } else if(pPick === "paper"){
-      if(cPick === "scissors"){
-        computerScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Paper loses to scissors!`);
-      } else if(cPick === "rock"){
-        humanScore++;
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Paper wins againt rock!`);
-      } else{
-        console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
-      }
-    }
+let pPick = getHumanChoice();
+let cPick = getComputerChoice();
+  console.log(`Player: ${pPick}`);
+  console.log(`Computer: ${cPick}`);
+  if(pPick === cPick){
+    console.log(`Player Score: ${humanScore}`);
+    console.log(`Computer Score : ${computerScore}`);
+    console.log('TIE!');
+  } else if(
+    (pPick === 'rock' && cPick === 'paper') ||
+    (pPick === 'paper' && cPick === 'scissors') ||
+    (pPick === 'scissors' && cPick === 'rock')
+  ){computerScore++;
+    console.log(`Player Score: ${humanScore}`);
+    console.log(`Computer Score : ${computerScore}`);
+    console.log(`${pPick} loses to ${cPick}. YOU LOSE!`);
+  }else{
+    humanScore++;
+    console.log(`Player Score: ${humanScore}`);
+    console.log(`Computer Score : ${computerScore}`);
+    console.log(`${pPick} beats ${cPick}. YOU WIN!`);
   }
 }
 
