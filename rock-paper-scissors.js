@@ -26,7 +26,7 @@ let declareWinner = (cScore, hScore) => {
 // Get computerChoice
 function getComputerChoice(){
   const choice = ['rock', 'paper', 'scissors'];
-  let randNum = Math.floor(Math.random() * choice.length)
+  let randNum = Math.floor(Math.random() * choice.length);
   let computerChoice = choice[randNum];
   return (computerChoice);
 }
