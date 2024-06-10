@@ -16,11 +16,9 @@ function playGame(){
 let declareWinner = (cScore, hScore) => {
   if(cScore > hScore){
     alert("COMPUTER WINS!!!!");
-  }
-  else if(hScore > cScore){
+  } else if(hScore > cScore){
     alert("PLAYER WINS!!!!");
-  }
-  else{
+  } else{
     alert("DRAW!!!!");
   }
 }
@@ -53,38 +51,30 @@ function playRound(){
       if(cPick === "paper"){
         computerScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Rock loses to paper!`);
-      }
-      else if(cPick === "scissors"){
+      } else if(cPick === "scissors"){
         humanScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Rock wins against scissors!`);
-      }
-      else{
+      } else{
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
       }
-    }
-    else if(pPick === "scissors"){
+    } else if(pPick === "scissors"){
       if(cPick === "rock"){
         computerScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Scissors loses against rock!`);
-      }
-      else if(cPick === "paper"){
+      } else if(cPick === "paper"){
         humanScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Scissors wins against paper!`);
-      }
-      else{
+      } else{
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
       }
-    }
-    else if(pPick === "paper"){
+    } else if(pPick === "paper"){
       if(cPick === "scissors"){
         computerScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU LOSE! Paper loses to scissors!`);
-      }
-      else if(cPick === "rock"){
+      } else if(cPick === "rock"){
         humanScore++;
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. YOU WIN! Paper wins againt rock!`);
-      }
-      else{
+      } else{
         console.log(`Computer Score: ${computerScore}, Player Score: ${humanScore}. DRAW!`);
       }
     }
