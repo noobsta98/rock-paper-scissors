@@ -43,9 +43,7 @@ function getComputerChoice(){
 // CREATE function to playRound
 function playRound(pPick){
   pPick = pPick.toLowerCase();
-  // console.log(pPick);
-// let pPick = getHumanChoice();
-let cPick = getComputerChoice();
+  let cPick = getComputerChoice();
   console.log(`Player: ${pPick}`);
   console.log(`Computer: ${cPick}`);
   if(pPick === cPick){
@@ -56,21 +54,21 @@ let cPick = getComputerChoice();
     (pPick === 'rock' && cPick === 'paper') ||
     (pPick === 'paper' && cPick === 'scissors') ||
     (pPick === 'scissors' && cPick === 'rock')
-  ){computerScore++;
-    console.log(`Player Score: ${humanScore}`);
-    console.log(`Computer Score : ${computerScore}`);
-    console.log(`${pPick} loses to ${cPick}. YOU LOSE!`);
+  ){
+    text.textContent = `PLAYER SCORE: ${humanScore}
+      COMPUTER SCORE: ${++computerScore}`
   }else{
-    humanScore++;
-    console.log(`Player Score: ${humanScore}`);
-    console.log(`Computer Score : ${computerScore}`);
-    console.log(`${pPick} beats ${cPick}. YOU WIN!`);
+    text.textContent =`'PLAYER SCORE: ${++humanScore}
+      COMPUTER SCORE: ${computerScore}`
   }
 }
 
 
 const container = document.querySelector('div');
-
+const result = document.querySelector('p');
+const text = document.createTextNode(`PLAYER SCORE: ${humanScore}
+COMPUTER SCORE: ${computerScore}`);
+result.appendChild(text);
 container.addEventListener('click', (e) =>{
   let target = e.target;
 
