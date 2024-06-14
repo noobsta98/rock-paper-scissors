@@ -2,6 +2,7 @@ html{
   box-sizing: border-box;
   height: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 *,
@@ -10,21 +11,20 @@ html{
   padding: 0;
   margin: 0;
   box-sizing: inherit;
-  outline: 2px solid red;
+  outline: 2px solid red; 
 }
 
 body{
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1; 
 }
 
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  flex: 5; 
+  align-items: center;
+  flex: 4; 
 }
 
 button{
@@ -32,10 +32,11 @@ button{
   width: 200px;
   margin: 20px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 .result{
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,4 +45,6 @@ button{
 
 p{
   width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
 }

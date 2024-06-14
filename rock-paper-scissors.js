@@ -15,13 +15,17 @@ let currentRound = 1 ;
 
 // CHECK score, DECLARE winner
 let declareWinner = (cScore, hScore) => {
+  const winnerPara = document.createElement('p');
   if(cScore > hScore){
-    alert("COMPUTER WINS!!!!");
+    winnerPara.textContent = 'PLAYER LOST!'
   } else if(hScore > cScore){
-    alert("PLAYER WINS!!!!");
+    winnerPara.textContent = 'PLAYER WON!'
   } else{
-    alert("DRAW!!!!");
+    winnerPara.textContent = 'TIE!';
   }
+  winnerPara.style['font-size'] = '50px';
+  winnerPara.style['font-weight'] = 'bolder';
+  result.appendChild(winnerPara);
 }
 
 // Get computerChoice
@@ -47,13 +51,14 @@ function playRound(pPick){
   let cPick = getComputerChoice();
   console.log(`Player: ${pPick}`);
   console.log(`Computer: ${cPick}`);
+  const logRoundOutcome= document.createElement('p');
   if(pPick === cPick){
     text.textContent = `PLAYER SCORE: ${humanScore}
       COMPUTER SCORE: ${computerScore}.`
-    const logRoundTie = document.createElement('p');
+    // const logRoundTie = document.createElement('p');
     const tieText = document.createTextNode(`Round ${currentRound} TIE!`);
-    logRoundTie.appendChild(tieText);
-    result.appendChild(logRoundTie);
+    logRoundOutcome.appendChild(tieText);
+    result.appendChild(logRoundOutcome);
   } else if(
     (pPick === 'rock' && cPick === 'paper') ||
     (pPick === 'paper' && cPick === 'scissors') ||
@@ -61,17 +66,17 @@ function playRound(pPick){
   ){
     text.textContent = `PLAYER SCORE: ${humanScore}
       COMPUTER SCORE: ${++computerScore}.`
-      const roundLogLose = document.createElement('p');
-      roundLogLose.textContent = `Round ${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
-      roundLogLose.style.color = 'rgba(255, 0, 0, 0.8)'
-      result.appendChild(roundLogLose);
+      // const roundLogLose = document.createElement('p');
+      logRoundOutcome.textContent = `Round ${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
+      logRoundOutcome.style.color = 'rgba(255, 0, 0, 0.8)'
+      result.appendChild(logRoundOutcome);
   } else{
     text.textContent =`PLAYER SCORE: ${++humanScore}
       COMPUTER SCORE: ${computerScore}.`
-      const roundLogWin = document.createElement('p');
-      roundLogWin.textContent = `Round ${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
-      roundLogWin.style.color = 'rgba(0, 255, 0, 1)'
-      result.appendChild(roundLogWin);
+      // const roundLogWin = document.createElement('p');
+      logRoundOutcome.textContent = `Round ${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
+      logRoundOutcome.style.color = 'rgba(0, 255, 0, 1)'
+      result.appendChild(logRoundOutcome);
   }
   currentRound++;
   if(currentRound > TOTALROUNDS){
@@ -81,7 +86,7 @@ function playRound(pPick){
 }
 
 
-const container = document.querySelector('div');
+const container = document.querySelector('.container');
 const result = document.querySelector('p');
 const text = document.createTextNode(`PLAYER SCORE: ${humanScore}
 COMPUTER SCORE: ${computerScore}`);
