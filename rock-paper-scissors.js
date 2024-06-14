@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // INIT computerScore and humanScore
 let computerScore = 0;
 let humanScore = 0;
+let round = 1 ;
 
 // PLAY game 
 // function playGame(){
@@ -47,19 +48,22 @@ function playRound(pPick){
   console.log(`Player: ${pPick}`);
   console.log(`Computer: ${cPick}`);
   if(pPick === cPick){
-    console.log(`Player Score: ${humanScore}`);
-    console.log(`Computer Score : ${computerScore}`);
-    console.log('TIE!');
+    text.textContent = `PLAYER SCORE: ${humanScore}
+      COMPUTER SCORE: ${computerScore}. It is a TIE!`
   } else if(
     (pPick === 'rock' && cPick === 'paper') ||
     (pPick === 'paper' && cPick === 'scissors') ||
     (pPick === 'scissors' && cPick === 'rock')
   ){
     text.textContent = `PLAYER SCORE: ${humanScore}
-      COMPUTER SCORE: ${++computerScore}`
+      COMPUTER SCORE: ${++computerScore}. Player: ${pPick} loses to Computer: ${cPick}`
   }else{
     text.textContent =`PLAYER SCORE: ${++humanScore}
-      COMPUTER SCORE: ${computerScore}`
+      COMPUTER SCORE: ${computerScore}. Player: ${pPick} wins against Computer: ${cPick}`
+  }
+  round++;
+  if(round === 5){
+    declareWinner(computerScore, humanScore);
   }
 }
 
