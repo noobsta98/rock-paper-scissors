@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // const ROUNDS = 5;
+  const TOTALROUNDS = 5;
 
 // INIT computerScore and humanScore
 let computerScore = 0;
 let humanScore = 0;
-let round = 1 ;
+let currentRound = 1 ;
 
 // PLAY game 
 // function playGame(){
@@ -49,20 +49,32 @@ function playRound(pPick){
   console.log(`Computer: ${cPick}`);
   if(pPick === cPick){
     text.textContent = `PLAYER SCORE: ${humanScore}
-      COMPUTER SCORE: ${computerScore}. It is a TIE!`
+      COMPUTER SCORE: ${computerScore}.`
+    const logRoundTie = document.createElement('p');
+    const tieText = document.createTextNode(`Round${currentRound} TIE!`);
+    logRoundTie.appendChild(tieText);
+    result.appendChild(logRoundTie);
   } else if(
     (pPick === 'rock' && cPick === 'paper') ||
     (pPick === 'paper' && cPick === 'scissors') ||
     (pPick === 'scissors' && cPick === 'rock')
   ){
     text.textContent = `PLAYER SCORE: ${humanScore}
-      COMPUTER SCORE: ${++computerScore}. Player: ${pPick} loses to Computer: ${cPick}`
-  }else{
+      COMPUTER SCORE: ${++computerScore}.`
+      const roundLogLose = document.createElement('p');
+      roundLogLose.textContent = `Round${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
+      roundLogLose.style.color = 'rgba(255, 0, 0, 0.8)'
+      result.appendChild(roundLogLose);
+  } else{
     text.textContent =`PLAYER SCORE: ${++humanScore}
-      COMPUTER SCORE: ${computerScore}. Player: ${pPick} wins against Computer: ${cPick}`
+      COMPUTER SCORE: ${computerScore}.`
+      const roundLogWin = document.createElement('p');
+      roundLogWin.textContent = `Round${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
+      roundLogWin.style.color = 'rgba(0, 255, 0, 0.8)'
+      result.appendChild(roundLogWin);
   }
-  round++;
-  if(round === 5){
+  currentRound++;
+  if(currentRound > TOTALROUNDS){
     declareWinner(computerScore, humanScore);
   }
 }
