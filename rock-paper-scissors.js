@@ -51,7 +51,7 @@ function playRound(pPick){
     text.textContent = `PLAYER SCORE: ${humanScore}
       COMPUTER SCORE: ${computerScore}.`
     const logRoundTie = document.createElement('p');
-    const tieText = document.createTextNode(`Round${currentRound} TIE!`);
+    const tieText = document.createTextNode(`Round ${currentRound} TIE!`);
     logRoundTie.appendChild(tieText);
     result.appendChild(logRoundTie);
   } else if(
@@ -62,20 +62,21 @@ function playRound(pPick){
     text.textContent = `PLAYER SCORE: ${humanScore}
       COMPUTER SCORE: ${++computerScore}.`
       const roundLogLose = document.createElement('p');
-      roundLogLose.textContent = `Round${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
+      roundLogLose.textContent = `Round ${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
       roundLogLose.style.color = 'rgba(255, 0, 0, 0.8)'
       result.appendChild(roundLogLose);
   } else{
     text.textContent =`PLAYER SCORE: ${++humanScore}
       COMPUTER SCORE: ${computerScore}.`
       const roundLogWin = document.createElement('p');
-      roundLogWin.textContent = `Round${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
-      roundLogWin.style.color = 'rgba(0, 255, 0, 0.8)'
+      roundLogWin.textContent = `Round ${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
+      roundLogWin.style.color = 'rgba(0, 255, 0, 1)'
       result.appendChild(roundLogWin);
   }
   currentRound++;
   if(currentRound > TOTALROUNDS){
     declareWinner(computerScore, humanScore);
+    container.removeEventListener('click', handleEvent);
   }
 }
 
@@ -86,7 +87,9 @@ const text = document.createTextNode(`PLAYER SCORE: ${humanScore}
 COMPUTER SCORE: ${computerScore}`);
 result.appendChild(text);
 
-container.addEventListener('click', (e) =>{
+container.addEventListener('click', handleEvent);
+  
+function handleEvent(e) {
   let target = e.target;
 
   switch (target.id) {
@@ -97,6 +100,6 @@ container.addEventListener('click', (e) =>{
       playRound(target.textContent);
       break;
   }
-});
+}
 // declareWinner(computerScore, humanScore);
 });
