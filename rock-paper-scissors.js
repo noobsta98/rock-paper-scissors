@@ -1,15 +1,16 @@
-const ROUNDS = 5;
+document.addEventListener('DOMContentLoaded', () => {
+  // const ROUNDS = 5;
 
 // INIT computerScore and humanScore
 let computerScore = 0;
 let humanScore = 0;
 
 // PLAY game 
-function playGame(){
-  for(let i = 0; i < ROUNDS; i++){
-  playRound();
-  }
-}
+// function playGame(){
+//   for(let i = 0; i < ROUNDS; i++){
+//   playRound();
+//   }
+// }
 
 // CHECK score, DECLARE winner
 let declareWinner = (cScore, hScore) => {
@@ -30,18 +31,20 @@ function getComputerChoice(){
   return (computerChoice);
 }
 // Ask humanChoice
-function getHumanChoice(){
-  let humanChoice = '';
-  while(!['rock', 'paper', 'scissors'].includes(humanChoice)){
-    humanChoice = prompt("Enter \"rock\", \"paper\" or \"scissors\".");
-  }
-  humanChoice = humanChoice.toLowerCase();
-  return humanChoice;
-}
+// function getHumanChoice(){
+//   let humanChoice = '';
+//   while(!['rock', 'paper', 'scissors'].includes(humanChoice)){
+//     humanChoice = prompt("Enter \"rock\", \"paper\" or \"scissors\".");
+//   }
+//   humanChoice = humanChoice.toLowerCase();
+//   return humanChoice;
+// }
 
 // CREATE function to playRound
-function playRound(){
-let pPick = getHumanChoice();
+function playRound(pPick){
+  pPick = pPick.toLowerCase();
+  // console.log(pPick);
+// let pPick = getHumanChoice();
 let cPick = getComputerChoice();
   console.log(`Player: ${pPick}`);
   console.log(`Computer: ${cPick}`);
@@ -65,5 +68,20 @@ let cPick = getComputerChoice();
   }
 }
 
-playGame();
-declareWinner(computerScore, humanScore);
+
+const container = document.querySelector('div');
+
+container.addEventListener('click', (e) =>{
+  let target = e.target;
+
+  switch (target.id) {
+    case 'rock':
+    case 'paper':
+    case 'scissor':
+      // console.log(target.textContent)
+      playRound(target.textContent);
+      break;
+  }
+});
+// declareWinner(computerScore, humanScore);
+});
