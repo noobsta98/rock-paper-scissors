@@ -6,12 +6,6 @@ let computerScore = 0;
 let humanScore = 0;
 let currentRound = 1 ;
 
-// PLAY game 
-// function playGame(){
-//   for(let i = 0; i < ROUNDS; i++){
-//   playRound();
-//   }
-// }
 
 // CHECK score, DECLARE winner
 let declareWinner = (cScore, hScore) => {
@@ -45,39 +39,41 @@ function getComputerChoice(){
 //   return humanChoice;
 // }
 
+
 // CREATE function to playRound
 function playRound(pPick){
   pPick = pPick.toLowerCase();
   let cPick = getComputerChoice();
   console.log(`Player: ${pPick}`);
   console.log(`Computer: ${cPick}`);
-  const logRoundOutcome= document.createElement('p');
+  const logRoundOutcome = document.createElement('p');
   if(pPick === cPick){
-    text.textContent = `PLAYER SCORE: ${humanScore}
-      COMPUTER SCORE: ${computerScore}.`
-    // const logRoundTie = document.createElement('p');
-    const tieText = document.createTextNode(`Round ${currentRound} TIE!`);
+    playerScoreCount.textContent = `PLAYER SCORE: ${humanScore}.`
+    computerScoreCount.textContent = `COMPUTER SCORE: ${computerScore}.`
+
+    const tieText = document.createTextNode(`[Round ${currentRound}] TIE!`);
     logRoundOutcome.appendChild(tieText);
-    result.appendChild(logRoundOutcome);
   } else if(
     (pPick === 'rock' && cPick === 'paper') ||
     (pPick === 'paper' && cPick === 'scissors') ||
     (pPick === 'scissors' && cPick === 'rock')
   ){
-    text.textContent = `PLAYER SCORE: ${humanScore}
-      COMPUTER SCORE: ${++computerScore}.`
-      // const roundLogLose = document.createElement('p');
-      logRoundOutcome.textContent = `Round ${currentRound} Player: ${pPick} loses to Computer: ${cPick}`;
-      logRoundOutcome.style.color = 'rgba(255, 0, 0, 0.8)'
-      result.appendChild(logRoundOutcome);
+    playerScoreCount.textContent = `PLAYER SCORE: ${humanScore}.`
+    computerScoreCount.textContent = `COMPUTER SCORE: ${++computerScore}.`
+
+    logRoundOutcome.style.backgroundColor = 'red';
+
+    logRoundOutcome.textContent = `[Round ${currentRound}] Player: ${pPick} loses to ${cPick}`;
   } else{
-    text.textContent =`PLAYER SCORE: ${++humanScore}
-      COMPUTER SCORE: ${computerScore}.`
-      // const roundLogWin = document.createElement('p');
-      logRoundOutcome.textContent = `Round ${currentRound} Player: ${pPick} wins against Computer: ${cPick}`
-      logRoundOutcome.style.color = 'rgba(0, 255, 0, 1)'
-      result.appendChild(logRoundOutcome);
-  }
+    playerScoreCount.textContent = `PLAYER SCORE: ${++humanScore}.`
+    computerScoreCount.textContent = `COMPUTER SCORE: ${computerScore}.`
+
+   logRoundOutcome.style.backgroundColor = 'green';
+
+    logRoundOutcome.textContent = `[Round ${currentRound}] Player: ${pPick} wins against Computer: ${cPick}`;
+    
+}
+  result.appendChild(logRoundOutcome);
   currentRound++;
   if(currentRound > TOTALROUNDS){
     declareWinner(computerScore, humanScore);
@@ -87,10 +83,12 @@ function playRound(pPick){
 
 
 const container = document.querySelector('.container');
-const result = document.querySelector('p');
-const text = document.createTextNode(`PLAYER SCORE: ${humanScore}
-COMPUTER SCORE: ${computerScore}`);
-result.appendChild(text);
+const result = document.querySelector('.result');
+const playerScoreCount = document.querySelector('.player-score');
+const computerScoreCount = document.querySelector('.computer-score');
+playerScoreCount.textContent = `PLAYER SCORE: ${humanScore}`;
+computerScoreCount.textContent = `COMPUTER SCORE: ${computerScore}`;
+
 
 container.addEventListener('click', handleEvent);
   
@@ -101,10 +99,7 @@ function handleEvent(e) {
     case 'rock':
     case 'paper':
     case 'scissor':
-      // console.log(target.textContent)
       playRound(target.textContent);
-      break;
   }
 }
-// declareWinner(computerScore, humanScore);
 });
